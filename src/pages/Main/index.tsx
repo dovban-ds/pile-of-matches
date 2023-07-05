@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useState } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
 import Score from "./humanScore";
@@ -18,8 +18,9 @@ const Main: FC<any> = (): ReactElement => {
         <div className="emoji">🤖</div>
       </div>
       <div className="central-block" onClick={handleClick}>
-        <p className="counter">{count}</p>
+        {count === 25 && <p className="init-text">Start the battle!</p>}
         <div className="emoji-spec">🔥</div>
+        <p className="counter">{count}</p>
       </div>
       <div className="player">
         <div className="emoji">👨🏻</div>

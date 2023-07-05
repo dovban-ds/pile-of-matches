@@ -27,22 +27,26 @@ const Modal: FC<any> = ({
             >
               1
             </button>
-            <button
-              id="two"
-              onClick={() => {
-                handleClick(2);
-              }}
-            >
-              2
-            </button>
-            <button
-              id="three"
-              onClick={() => {
-                handleClick(3);
-              }}
-            >
-              3
-            </button>
+            {matches < 2 ? null : (
+              <button
+                id="two"
+                onClick={() => {
+                  handleClick(2);
+                }}
+              >
+                2
+              </button>
+            )}
+            {matches < 3 ? null : (
+              <button
+                id="three"
+                onClick={() => {
+                  handleClick(3);
+                }}
+              >
+                3
+              </button>
+            )}
           </div>
         </div>
       </div>
