@@ -1,4 +1,5 @@
 import { FC, ReactElement } from "react";
+import aiLogic from "../../api/aiLogic";
 
 const Modal: FC<any> = ({
   matches,
@@ -6,10 +7,13 @@ const Modal: FC<any> = ({
   offModal,
   setNumbs,
   numbs,
+  aiNumbs,
+  setAiNumbs,
 }: any): ReactElement => {
   const handleClick = (amount: any) => {
     setNumbs([...numbs, amount]);
     setMatches(matches - amount);
+    aiLogic(matches - amount, aiNumbs, setAiNumbs, setMatches);
     return offModal(false);
   };
   return (
@@ -27,7 +31,7 @@ const Modal: FC<any> = ({
             >
               1
             </button>
-            {matches < 2 ? null : (
+            {matches >= 2 && (
               <button
                 id="two"
                 onClick={() => {
@@ -37,7 +41,7 @@ const Modal: FC<any> = ({
                 2
               </button>
             )}
-            {matches < 3 ? null : (
+            {matches >= 3 && (
               <button
                 id="three"
                 onClick={() => {

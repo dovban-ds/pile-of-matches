@@ -2,11 +2,13 @@ import { FC, ReactElement, useState } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
 import Score from "./humanScore";
+import AiScore from "./aiScore";
 
 const Main: FC<any> = (): ReactElement => {
   const [count, setCount] = useState(25);
   const [modal, setModal] = useState(false);
   const [numbs, setNumbs] = useState([]);
+  const [aiNumbs, setAiNumbs] = useState([]);
 
   const handleClick = () => {
     setModal(true);
@@ -16,6 +18,7 @@ const Main: FC<any> = (): ReactElement => {
     <div className="main">
       <div className="ai">
         <div className="emoji">🤖</div>
+        <AiScore aiNumbs={aiNumbs} />
       </div>
       <div className="central-block" onClick={handleClick}>
         {count === 25 && <p className="init-text">Start the battle!</p>}
@@ -33,6 +36,8 @@ const Main: FC<any> = (): ReactElement => {
           offModal={setModal}
           setNumbs={setNumbs}
           numbs={numbs}
+          aiNumbs={aiNumbs}
+          setAiNumbs={setAiNumbs}
         />
       )}
     </div>

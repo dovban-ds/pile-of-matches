@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement } from "react";
 
 const Score: FC<any> = ({ numbs }: any): ReactElement => {
   return (
