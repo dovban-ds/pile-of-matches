@@ -1,10 +1,12 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactElement, useEffect, useState } from "react";
 import "./index.style.css";
-import Modal from "./main.modal";
+import Modal from "./question.modal";
+import Score from "./humanScore";
 
 const Main: FC<any> = (): ReactElement => {
-  const [count, setCount] = useState("25");
+  const [count, setCount] = useState(25);
   const [modal, setModal] = useState(false);
+  const [numbs, setNumbs] = useState([]);
 
   const handleClick = () => {
     setModal(true);
@@ -21,8 +23,17 @@ const Main: FC<any> = (): ReactElement => {
       </div>
       <div className="player">
         <div className="emoji">👨🏻</div>
+        <Score numbs={numbs} />
       </div>
-      {modal ? <Modal matches={count} /> : null}
+      {modal && (
+        <Modal
+          matches={count}
+          setMatches={setCount}
+          offModal={setModal}
+          setNumbs={setNumbs}
+          numbs={numbs}
+        />
+      )}
     </div>
   );
 };
