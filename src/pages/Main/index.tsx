@@ -1,8 +1,7 @@
 import { FC, ReactElement, useState } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
-import Score from "./humanScore";
-import AiScore from "./aiScore";
+import Score from "./score";
 
 const Main: FC<any> = (): ReactElement => {
   const [count, setCount] = useState(25);
@@ -18,16 +17,20 @@ const Main: FC<any> = (): ReactElement => {
     <div className="main">
       <div className="ai">
         <div className="emoji">🤖</div>
-        <AiScore aiNumbs={aiNumbs} />
+        <Score numbs={numbs} aiNumbs={aiNumbs} playerType="ai" />
       </div>
       <div className="central-block" onClick={handleClick}>
-        {count === 25 && <p className="init-text">Start the battle!</p>}
+        {count === 25 ? (
+          <p className="init-text">Start the battle!</p>
+        ) : (
+          <p className="init-text">Get more!</p>
+        )}
         <div className="emoji-spec">🔥</div>
         <p className="counter">{count}</p>
       </div>
       <div className="player">
         <div className="emoji">👨🏻</div>
-        <Score numbs={numbs} />
+        <Score numbs={numbs} aiNumbs={aiNumbs} playerType="human" />
       </div>
       {modal && (
         <Modal
