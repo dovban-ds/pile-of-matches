@@ -13,7 +13,7 @@ const Modal: FC<any> = ({
   const handleClick = (amount: any) => {
     setNumbs([...numbs, amount]);
     setMatches(matches - amount);
-    aiLogic(matches - amount, aiNumbs, setAiNumbs, setMatches);
+    aiLogic(matches - amount, amount, aiNumbs, setAiNumbs, setMatches);
     return offModal(false);
   };
   return (

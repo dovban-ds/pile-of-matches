@@ -2,6 +2,7 @@ import { FC, ReactElement, useState } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
 import Score from "./score";
+import WinnerModal from "./winner.modal";
 
 const Main: FC<any> = (): ReactElement => {
   const [count, setCount] = useState(25);
@@ -43,6 +44,7 @@ const Main: FC<any> = (): ReactElement => {
           setAiNumbs={setAiNumbs}
         />
       )}
+      {count === 0 && <WinnerModal numbs={numbs} />}
     </div>
   );
 };
