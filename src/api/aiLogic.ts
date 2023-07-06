@@ -1,38 +1,67 @@
 const aiLogic: any = (
   matches: any,
+  gameState: any,
   amount: any,
-  aiNumbs: any,
-  setAiNumbs: any,
-  setMatches: any
+  setGameState: any
 ): any => {
-  if (matches === 6) {
-    setMatches(matches - 2);
-    return setAiNumbs([...aiNumbs, 2]);
+  if (matches === 7) {
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 3],
+      matches: gameState.matches - 3,
+    }));
   } else if (matches === 3) {
-    const even = aiNumbs.reduce((acc: any, item: any) => acc + item, 0);
+    const even = gameState.aiNumbs.reduce(
+      (acc: any, item: any) => acc + item,
+      0
+    );
     if (even % 2 === 0) {
-      setMatches(matches - 2);
-      return setAiNumbs([...aiNumbs, 2]);
+      return setGameState((gameState: any) => ({
+        ...gameState,
+        aiNumbs: [...gameState.aiNumbs, 2],
+        matches: gameState.matches - 2,
+      }));
     }
-    setMatches(matches - 3);
-    return setAiNumbs([...aiNumbs, 3]);
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 3],
+      matches: gameState.matches - 3,
+    }));
   } else if (matches === 2) {
-    const even = aiNumbs.reduce((acc: any, item: any) => acc + item, 0);
+    const even = gameState.aiNumbs.reduce(
+      (acc: any, item: any) => acc + item,
+      0
+    );
     if (even % 2 !== 0) {
-      setMatches(matches - 1);
-      return setAiNumbs([...aiNumbs, 1]);
+      return setGameState((gameState: any) => ({
+        ...gameState,
+        aiNumbs: [...gameState.aiNumbs, 1],
+        matches: gameState.matches - 1,
+      }));
     }
-    setMatches(matches - 2);
-    return setAiNumbs([...aiNumbs, 2]);
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 2],
+      matches: gameState.matches - 2,
+    }));
   } else if (amount === 3 && matches !== 0) {
-    setMatches(matches - 1);
-    return setAiNumbs([...aiNumbs, 1]);
+    return setGameState((gameState: any): void => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 1],
+      matches: gameState.matches - 1,
+    }));
   } else if (amount === 2 && matches !== 0) {
-    setMatches(matches - 2);
-    return setAiNumbs([...aiNumbs, 2]);
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 2],
+      matches: gameState.matches - 2,
+    }));
   } else if (amount === 1 && matches !== 0) {
-    setMatches(matches - 3);
-    return setAiNumbs([...aiNumbs, 3]);
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 3],
+      matches: gameState.matches - 3,
+    }));
   }
 };
 

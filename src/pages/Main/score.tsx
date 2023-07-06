@@ -1,11 +1,11 @@
 import { FC, ReactElement } from "react";
 
-const Score: FC<any> = ({ numbs, aiNumbs, playerType }: any): ReactElement => {
+const Score: FC<any> = ({ gameState, playerType }: any): ReactElement => {
   return (
     <div className="box">
       {playerType === "ai"
-        ? aiNumbs &&
-          aiNumbs.map(
+        ? gameState.aiNumbs &&
+          gameState.aiNumbs.map(
             (item: any, id: number): ReactElement => (
               <div className="box-inner" key={id}>
                 <div className="emoji-spec-small">🔥</div>
@@ -13,8 +13,8 @@ const Score: FC<any> = ({ numbs, aiNumbs, playerType }: any): ReactElement => {
               </div>
             )
           )
-        : numbs &&
-          numbs.map(
+        : gameState.numbs &&
+          gameState.numbs.map(
             (item: any, id: number): ReactElement => (
               <div className="box-inner" key={id}>
                 <div className="emoji-spec-small">🔥</div>

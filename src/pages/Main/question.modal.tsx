@@ -2,38 +2,43 @@ import { FC, ReactElement } from "react";
 import aiLogic from "../../api/aiLogic";
 
 const Modal: FC<any> = ({
-  matches,
-  setMatches,
   offModal,
-  setNumbs,
-  numbs,
-  aiNumbs,
-  setAiNumbs,
+  gameState,
+  setGameState,
 }: any): ReactElement => {
   const handleClick = (amount: any) => {
-    setNumbs([...numbs, amount]);
-    setMatches(matches - amount);
-    aiLogic(matches - amount, amount, aiNumbs, setAiNumbs, setMatches);
+    const { matches, numbs } = gameState;
+    const updatedNumbs = [...numbs, amount];
+    const updatedMatches = matches - amount;
+
+    setGameState((prevState: any) => ({
+      ...prevState,
+      numbs: updatedNumbs,
+      matches: updatedMatches,
+    }));
+
+    aiLogic(updatedMatches, gameState, amount, setGameState);
     return offModal(false);
   };
+
   return (
     <div className="modal">
       <div className="modal-box">
-        <div className="modal-title">{matches} matches in a piled</div>
+        <div className="modal-title">
+          {gameState.matches} matches in a piled
+        </div>
         <div className="modal-body">
           <p>I am strong enough to carry ...</p>
           <div className="buttons-bar">
             <button
-              id="one"
               onClick={() => {
                 handleClick(1);
               }}
             >
               1
             </button>
-            {matches >= 2 && (
+            {gameState.matches >= 2 && (
               <button
-                id="two"
                 onClick={() => {
                   handleClick(2);
                 }}
@@ -41,9 +46,8 @@ const Modal: FC<any> = ({
                 2
               </button>
             )}
-            {matches >= 3 && (
+            {gameState.matches >= 3 && (
               <button
-                id="three"
                 onClick={() => {
                   handleClick(3);
                 }}

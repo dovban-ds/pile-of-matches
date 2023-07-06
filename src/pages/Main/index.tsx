@@ -5,10 +5,13 @@ import Score from "./score";
 import WinnerModal from "./winner.modal";
 
 const Main: FC<any> = (): ReactElement => {
-  const [count, setCount] = useState(25);
   const [modal, setModal] = useState(false);
-  const [numbs, setNumbs] = useState([]);
-  const [aiNumbs, setAiNumbs] = useState([]);
+
+  const [gameState, setGameState] = useState<any>({
+    matches: 25,
+    numbs: [],
+    aiNumbs: [],
+  });
 
   const handleClick = () => {
     setModal(true);
@@ -18,33 +21,29 @@ const Main: FC<any> = (): ReactElement => {
     <div className="main">
       <div className="ai">
         <div className="emoji">🤖</div>
-        <Score numbs={numbs} aiNumbs={aiNumbs} playerType="ai" />
+        <Score gameState={gameState} playerType="ai" />
       </div>
       <div className="central-block" onClick={handleClick}>
-        {count === 25 ? (
+        {gameState.matches === 25 ? (
           <p className="init-text">Start the battle!</p>
         ) : (
           <p className="init-text">Get more!</p>
         )}
         <div className="emoji-spec">🔥</div>
-        <p className="counter">{count}</p>
+        <p className="counter">{gameState.matches}</p>
       </div>
       <div className="player">
         <div className="emoji">👨🏻</div>
-        <Score numbs={numbs} aiNumbs={aiNumbs} playerType="human" />
+        <Score gameState={gameState} playerType="human" />
       </div>
       {modal && (
         <Modal
-          matches={count}
-          setMatches={setCount}
           offModal={setModal}
-          setNumbs={setNumbs}
-          numbs={numbs}
-          aiNumbs={aiNumbs}
-          setAiNumbs={setAiNumbs}
+          gameState={gameState}
+          setGameState={setGameState}
         />
       )}
-      {count === 0 && <WinnerModal numbs={numbs} />}
+      {gameState.matches === 0 && <WinnerModal numbs={gameState.numbs} />}
     </div>
   );
 };

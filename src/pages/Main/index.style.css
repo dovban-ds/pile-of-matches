@@ -50,6 +50,10 @@
   border-radius: 10px;
   font-size: 1vw;
   font-weight: 600;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .init-text {
