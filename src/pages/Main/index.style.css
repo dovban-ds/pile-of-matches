@@ -305,6 +305,7 @@ input {
   }
   .modal-box {
     max-width: 50%;
+    font-size: 1.2rem;
   }
 }
 
@@ -381,6 +382,7 @@ input {
   }
   .modal-box {
     max-width: 75%;
+    font-size: 1rem;
   }
 }
 
@@ -408,6 +410,38 @@ input {
     font-size: 3vw;
   }
   .modal-box {
-    max-width: 85%;
+    max-width: 65%;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-height: 300px) {
+  .modal-box {
+    max-width: 50%;
+    font-size: 0.8rem;
+    max-height: 100vh;
+  }
+
+  hr {
+    display: none;
+  }
+
+  .modal-body input {
+    margin: 0 0 10px;
+  }
+
+  .modal-btn {
+    max-width: 60%;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+
+  .modal-title {
+    margin-bottom: 15px;
+  }
+
+  .modal-body p {
+    margin-bottom: 20px;
   }
 }
