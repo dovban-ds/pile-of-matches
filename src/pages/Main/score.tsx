@@ -1,12 +1,16 @@
 import { FC, ReactElement } from "react";
+import { TypeScoreProps } from "../../types/main.types";
 
-const Score: FC<any> = ({ gameState, playerType }: any): ReactElement => {
+const Score: FC<TypeScoreProps> = ({
+  gameState,
+  playerType,
+}: TypeScoreProps): ReactElement => {
   return (
     <div className="box">
       {playerType === "ai"
         ? gameState.aiNumbs &&
           gameState.aiNumbs.map(
-            (item: any, id: number): ReactElement => (
+            (item: number, id: number): ReactElement => (
               <div className="box-inner" key={id}>
                 <div className="emoji-spec-small">🔥</div>
                 <p className="counter-small">{item}</p>
@@ -15,7 +19,7 @@ const Score: FC<any> = ({ gameState, playerType }: any): ReactElement => {
           )
         : gameState.numbs &&
           gameState.numbs.map(
-            (item: any, id: number): ReactElement => (
+            (item: number, id: number): ReactElement => (
               <div className="box-inner" key={id}>
                 <div className="emoji-spec-small">🔥</div>
                 <p className="counter-small">{item}</p>

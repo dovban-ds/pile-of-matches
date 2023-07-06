@@ -1,13 +1,14 @@
-import { FC, ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
 import Score from "./score";
 import WinnerModal from "./winner.modal";
 import { aiFirstTurnLogic } from "../../api/aiLogic";
+import { TypeInitState } from "../../types/main.types";
 
-const Main: FC<any> = (): ReactElement => {
-  const [modal, setModal] = useState(false);
-  const [gameState, setGameState] = useState<any>({
+const Main = (): ReactElement => {
+  const [modal, setModal] = useState<boolean>(false);
+  const [gameState, setGameState] = useState<TypeInitState>({
     matches: 25,
     numbs: [],
     aiNumbs: [],
@@ -15,7 +16,7 @@ const Main: FC<any> = (): ReactElement => {
 
   const { matches, numbs, aiNumbs } = gameState;
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setModal(true);
   };
 
@@ -40,7 +41,7 @@ const Main: FC<any> = (): ReactElement => {
         {!aiNumbs.length && (
           <button
             className="init-text btn"
-            onClick={() => {
+            onClick={(): void => {
               aiFirstTurnLogic(matches, gameState, setGameState);
             }}
           >

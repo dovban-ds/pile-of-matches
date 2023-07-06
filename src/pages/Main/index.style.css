@@ -70,7 +70,7 @@
 }
 
 .btn {
-  transition: color 1.5s, text-shadow 1.5s, border-radius 1.5s;
+  transition: color 1s, text-shadow 1s, border-radius 1s;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -184,10 +184,10 @@
     margin: 15px 0;
   }
   .emoji-spec-small {
-    font-size: 3vw;
+    font-size: 4vw;
   }
   .counter-small {
-    font-size: 0.9vw;
+    font-size: 1.2vw;
   }
 }
 
@@ -208,10 +208,10 @@
     margin-bottom: 10px;
   }
   .emoji-spec-small {
-    font-size: 4vw;
+    font-size: 5vw;
   }
   .counter-small {
-    font-size: 1.1vw;
+    font-size: 1.4vw;
     padding: 3px 5px;
   }
 }
@@ -240,6 +240,13 @@
   .ai {
     width: 100vw;
   }
+  .emoji-spec-small {
+    font-size: 5vw;
+  }
+  .counter-small {
+    font-size: 1.5vw;
+    padding: 3px 5px;
+  }
 }
 
 @media screen and (max-width: 430px) {
@@ -250,10 +257,10 @@
     margin-bottom: 5px;
   }
   .emoji-spec-small {
-    font-size: 6vw;
+    font-size: 8vw;
   }
   .counter-small {
-    font-size: 1.8vw;
+    font-size: 1.9vw;
     padding: 3px 5px;
   }
   .counter {

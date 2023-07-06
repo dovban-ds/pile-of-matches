@@ -1,7 +1,10 @@
 import { FC, ReactElement } from "react";
 
-const WinnerModal: FC<any> = ({ numbs }: any): ReactElement => {
-  const even = numbs.reduce((acc: any, item: any) => acc + item, 0);
+const WinnerModal: FC<{ numbs: number[] }> = ({ numbs }): ReactElement => {
+  const even: number = numbs.reduce(
+    (acc: number, item: number): number => acc + item,
+    0
+  );
   return (
     <div className="modal">
       <div className="modal-box">

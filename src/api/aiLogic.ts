@@ -50,23 +50,31 @@ export const aiLogic: any = (
       aiNumbs: [...gameState.aiNumbs, 2],
       matches: gameState.matches - 2,
     }));
-  } else if (amount === 3 && matches !== 0) {
+  } else if (amount === 3 && matches >= 3) {
     return setGameState((gameState: any): void => ({
       ...gameState,
       aiNumbs: [...gameState.aiNumbs, 1],
       matches: gameState.matches - 1,
     }));
-  } else if (amount === 2 && matches !== 0) {
+  } else if (amount === 2 && matches >= 2) {
     return setGameState((gameState: any) => ({
       ...gameState,
       aiNumbs: [...gameState.aiNumbs, 2],
       matches: gameState.matches - 2,
     }));
-  } else if (amount === 1 && matches !== 0) {
+  } else if (amount === 1 && matches >= 1) {
     return setGameState((gameState: any) => ({
       ...gameState,
       aiNumbs: [...gameState.aiNumbs, 3],
       matches: gameState.matches - 3,
+    }));
+  } else if (matches === 0) {
+    return;
+  } else {
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 1],
+      matches: gameState.matches - 1,
     }));
   }
 };

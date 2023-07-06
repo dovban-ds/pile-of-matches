@@ -1,17 +1,20 @@
 import { FC, ReactElement } from "react";
 import { aiLogic } from "../../api/aiLogic";
+import { TypeInitState, TypeModalProps } from "../../types/main.types";
 
-const Modal: FC<any> = ({
+const Modal: FC<TypeModalProps> = ({
   offModal,
   gameState,
   setGameState,
-}: any): ReactElement => {
-  const handleClick = (amount: any) => {
-    setGameState((prevState: any) => ({
-      ...prevState,
-      numbs: [...gameState.numbs, amount],
-      matches: gameState.matches - amount,
-    }));
+}: TypeModalProps): ReactElement => {
+  const handleClick = (amount: number): void => {
+    setGameState(
+      (prevState: TypeInitState): TypeInitState => ({
+        ...prevState,
+        numbs: [...gameState.numbs, amount],
+        matches: gameState.matches - amount,
+      })
+    );
 
     aiLogic(gameState.matches - amount, gameState, amount, setGameState);
     return offModal(false);
@@ -27,7 +30,7 @@ const Modal: FC<any> = ({
           <p>I am strong enough to carry ...</p>
           <div className="buttons-bar">
             <button
-              onClick={() => {
+              onClick={(): void => {
                 handleClick(1);
               }}
             >
@@ -35,7 +38,7 @@ const Modal: FC<any> = ({
             </button>
             {gameState.matches >= 2 && (
               <button
-                onClick={() => {
+                onClick={(): void => {
                   handleClick(2);
                 }}
               >
@@ -44,7 +47,7 @@ const Modal: FC<any> = ({
             )}
             {gameState.matches >= 3 && (
               <button
-                onClick={() => {
+                onClick={(): void => {
                   handleClick(3);
                 }}
               >
