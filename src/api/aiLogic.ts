@@ -24,7 +24,7 @@ export const aiLogic: TypeAiLogic = (
     );
   } else if (matches === 3) {
     const even: number = gameState.aiNumbs.reduce(
-      (acc: any, item: any) => acc + item,
+      (acc: number, item: number): number => acc + item,
       0
     );
     if (even % 2 === 0) {
@@ -45,7 +45,7 @@ export const aiLogic: TypeAiLogic = (
     );
   } else if (matches === 2) {
     const even = gameState.aiNumbs.reduce(
-      (acc: any, item: any) => acc + item,
+      (acc: number, item: number): number => acc + item,
       0
     );
     if (even % 2 !== 0) {
