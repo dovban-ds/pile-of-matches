@@ -14,9 +14,23 @@ const HeaderMenu: FC<any> = (): ReactElement => {
       </button>
       <button className="custom-game">Custom game</button>
       {rulesModal && (
-        <div className="modal">
-          <div className="modal-box">
-            <div className="modal-title">Pile of Matches</div>
+        <div
+          className="modal"
+          onClick={() => {
+            setRulesModal(false);
+          }}
+        >
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-title">
+              <p>Pile of Matches</p>
+              <div
+                onClick={() => {
+                  setRulesModal(false);
+                }}
+              >
+                ✖️
+              </div>
+            </div>
             <div className="modal-body">
               Two people are playing a game. From the pile of 25 matches, each
               player takes either 1, 2 or 3 matches on each turn. The game is

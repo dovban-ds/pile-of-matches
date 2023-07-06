@@ -96,21 +96,19 @@
 }
 
 .init-text {
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
   font-weight: 600;
   font-size: 2rem;
   text-align: center;
   background-color: #000000;
-  color: #000;
+  color: #ffffff;
   padding: 15px 10px;
-  border-radius: 0 0 0 0;
   letter-spacing: 2px;
   margin-bottom: 30px;
   cursor: pointer;
 }
 
 .btn {
-  transition: color 1.5s, text-shadow 1.5s, border-radius 1.5s;
+  transition: color 1s;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -118,9 +116,7 @@
 }
 
 .btn:hover {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  color: #ffffff;
-  border-radius: 50px;
+  color: rgb(127, 124, 124);
 }
 
 /* Question modal settings */
@@ -157,6 +153,17 @@
 
 .modal-title {
   margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.modal-title p {
+  margin: 0 auto;
+}
+
+.modal-title div {
+  cursor: pointer;
 }
 
 .buttons-bar {

@@ -21,10 +21,22 @@ const Modal: FC<TypeModalProps> = ({
   };
 
   return (
-    <div className="modal">
-      <div className="modal-box">
+    <div
+      className="modal"
+      onClick={() => {
+        offModal(false);
+      }}
+    >
+      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <div className="modal-title">
-          {gameState.matches} matches in a piled
+          <p>{gameState.matches} matches in a pile</p>
+          <div
+            onClick={() => {
+              offModal(false);
+            }}
+          >
+            ✖️
+          </div>
         </div>
         <div className="modal-body">
           <p>I am strong enough to carry ...</p>
