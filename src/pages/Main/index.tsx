@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useState, FC } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
 import Score from "./score";
@@ -63,7 +63,7 @@ const Main = (): ReactElement => {
             setGameState={setGameState}
           />
         )}
-        {matches === 0 && <WinnerModal numbs={numbs} />}H
+        {matches === 0 && <WinnerModal numbs={numbs} />}
       </div>
     </div>
   );

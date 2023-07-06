@@ -1,7 +1,9 @@
 import { ReactElement, useState, FC } from "react";
+import CustomGame from "./customGame.modal";
 
 const HeaderMenu: FC<any> = (): ReactElement => {
   const [rulesModal, setRulesModal] = useState(false);
+  const [customGameModal, setCustomGameModal] = useState(false);
 
   const handleClick = () => {
     setRulesModal(true);
@@ -12,7 +14,17 @@ const HeaderMenu: FC<any> = (): ReactElement => {
       <button className="rules" onClick={handleClick}>
         Rules
       </button>
-      <button className="custom-game">Custom game</button>
+      <button
+        className="custom-game"
+        onClick={() => {
+          setCustomGameModal(true);
+        }}
+      >
+        Custom game
+      </button>
+      {customGameModal && (
+        <CustomGame setCustomGameModal={setCustomGameModal} />
+      )}
       {rulesModal && (
         <div
           className="modal"
