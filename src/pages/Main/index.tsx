@@ -5,6 +5,7 @@ import Score from "./score";
 import WinnerModal from "./winner.modal";
 import { aiFirstTurnLogic } from "../../api/aiLogic";
 import { PlayersRoles, TypeInitState } from "../../types/main.types";
+import HeaderMenu from "./headerMenu";
 
 const Main = (): ReactElement => {
   const [modal, setModal] = useState<boolean>(false);
@@ -21,46 +22,49 @@ const Main = (): ReactElement => {
   };
 
   return (
-    <div className="main">
-      <div className="ai">
-        <div className="emoji">🤖</div>
-        <Score gameState={gameState} playerType={PlayersRoles.ai} />
-      </div>
-      <div className="central-block">
-        {matches === 25 ? (
-          <p className="init-text btn" onClick={handleClick}>
-            Start the battle!
-          </p>
-        ) : (
-          <p className="init-text btn" onClick={handleClick}>
-            Get more!
-          </p>
+    <div className="general-container">
+      <HeaderMenu />
+      <div className="main">
+        <div className="ai">
+          <div className="emoji">🤖</div>
+          <Score gameState={gameState} playerType={PlayersRoles.ai} />
+        </div>
+        <div className="central-block">
+          {matches === 25 ? (
+            <p className="init-text btn" onClick={handleClick}>
+              Start the battle!
+            </p>
+          ) : (
+            <p className="init-text btn" onClick={handleClick}>
+              Get more!
+            </p>
+          )}
+          <div className="emoji-spec">🔥</div>
+          <p className="counter">{matches}</p>
+          {!aiNumbs.length && (
+            <button
+              className="init-text btn"
+              onClick={(): void => {
+                aiFirstTurnLogic(matches, gameState, setGameState);
+              }}
+            >
+              Succumb to AI
+            </button>
+          )}
+        </div>
+        <div className="player">
+          <div className="emoji">👨🏻</div>
+          <Score gameState={gameState} playerType={PlayersRoles.player} />
+        </div>
+        {modal && (
+          <Modal
+            offModal={setModal}
+            gameState={gameState}
+            setGameState={setGameState}
+          />
         )}
-        <div className="emoji-spec">🔥</div>
-        <p className="counter">{matches}</p>
-        {!aiNumbs.length && (
-          <button
-            className="init-text btn"
-            onClick={(): void => {
-              aiFirstTurnLogic(matches, gameState, setGameState);
-            }}
-          >
-            Succumb to AI
-          </button>
-        )}
+        {matches === 0 && <WinnerModal numbs={numbs} />}H
       </div>
-      <div className="player">
-        <div className="emoji">👨🏻</div>
-        <Score gameState={gameState} playerType={PlayersRoles.player} />
-      </div>
-      {modal && (
-        <Modal
-          offModal={setModal}
-          gameState={gameState}
-          setGameState={setGameState}
-        />
-      )}
-      {matches === 0 && <WinnerModal numbs={numbs} />}
     </div>
   );
 };

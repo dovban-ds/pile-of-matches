@@ -1,6 +1,46 @@
+/* Heading buttons */
+.general-container {
+  height: 100vh;
+}
+
+.menu {
+  padding: 15px 15px;
+}
+
+.rules {
+  margin-right: 25px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-family: "Agdasima", sans-serif;
+  padding: 3px 15px;
+  cursor: pointer;
+  transition: color 1s;
+  font-size: 1vw;
+}
+
+.rules:hover {
+  color: rgb(127, 124, 124);
+}
+
+.custom-game {
+  font-size: 1vw;
+  margin-right: 25px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-family: "Agdasima", sans-serif;
+  padding: 3px 15px;
+  cursor: pointer;
+  transition: color 1s;
+}
+.custom-game:hover {
+  color: rgb(127, 124, 124);
+}
+
 /* Main block settings */
 .main {
-  height: 100vh;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,14 +103,14 @@
   background-color: #000000;
   color: #000;
   padding: 15px 10px;
-  border-radius: 0 30px 0 30px;
-  letter-spacing: 3px;
+  border-radius: 0 0 0 0;
+  letter-spacing: 2px;
   margin-bottom: 30px;
   cursor: pointer;
 }
 
 .btn {
-  transition: color 1s, text-shadow 1s, border-radius 1s;
+  transition: color 1.5s, text-shadow 1.5s, border-radius 1.5s;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -80,11 +120,13 @@
 .btn:hover {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: #ffffff;
-  border-radius: 30px 0 30px 0;
+  border-radius: 50px;
 }
 
 /* Question modal settings */
 .modal {
+  font-weight: 600;
+  font-family: "Agdasima", sans-serif;
   position: fixed;
   top: 0;
   left: 0;
@@ -94,13 +136,18 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
 }
 
 .modal-box {
+  max-width: 40%;
+  word-spacing: 6px;
+  letter-spacing: 1px;
   background-color: #aeaeae;
   padding: 25px;
-  border-radius: 10px;
-  color: #000;
+  border-radius: 20px;
+  color: #ffffff;
+  background-color: #000;
   font-weight: 600;
   font-size: 1.5rem;
   display: flex;
@@ -139,10 +186,11 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 20px;
 }
 
 .box-inner {
-  flex-basis: 20%;
+  flex-basis: 25%;
 }
 
 .emoji-spec-small {
@@ -177,7 +225,7 @@
   .init-text {
     font-size: 1.2rem;
     padding: 20px 15px;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     margin-bottom: 10px;
   }
   .emoji-spec {
@@ -188,6 +236,15 @@
   }
   .counter-small {
     font-size: 1.2vw;
+  }
+  .rules {
+    font-size: 1.4vw;
+  }
+  .custom-game {
+    font-size: 1.4vw;
+  }
+  .modal-box {
+    max-width: 50%;
   }
 }
 
@@ -204,7 +261,7 @@
   .init-text {
     font-size: 1rem;
     padding: 15px 15px;
-    letter-spacing: 7px;
+    letter-spacing: 3px;
     margin-bottom: 10px;
   }
   .emoji-spec-small {
@@ -213,6 +270,15 @@
   .counter-small {
     font-size: 1.4vw;
     padding: 3px 5px;
+  }
+  .rules {
+    font-size: 1.6vw;
+  }
+  .custom-game {
+    font-size: 1.6vw;
+  }
+  .modal-box {
+    max-width: 60%;
   }
 }
 
@@ -247,13 +313,22 @@
     font-size: 1.5vw;
     padding: 3px 5px;
   }
+  .rules {
+    font-size: 2.5vw;
+  }
+  .custom-game {
+    font-size: 2.5vw;
+  }
+  .modal-box {
+    max-width: 75%;
+  }
 }
 
 @media screen and (max-width: 430px) {
   .init-text {
     font-size: 1.2rem;
     padding: 10px 10px;
-    letter-spacing: 7px;
+    letter-spacing: 3px;
     margin-bottom: 5px;
   }
   .emoji-spec-small {
@@ -265,5 +340,14 @@
   }
   .counter {
     font-size: 4vw;
+  }
+  .rules {
+    font-size: 3vw;
+  }
+  .custom-game {
+    font-size: 3vw;
+  }
+  .modal-box {
+    max-width: 85%;
   }
 }
