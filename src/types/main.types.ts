@@ -12,5 +12,10 @@ export type TypeModalProps = {
 
 export type TypeScoreProps = {
   gameState: TypeInitState;
-  playerType: string;
+  playerType: PlayersRoles;
 };
+
+export const enum PlayersRoles {
+  ai,
+  player,
+}

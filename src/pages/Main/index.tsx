@@ -4,7 +4,7 @@ import Modal from "./question.modal";
 import Score from "./score";
 import WinnerModal from "./winner.modal";
 import { aiFirstTurnLogic } from "../../api/aiLogic";
-import { TypeInitState } from "../../types/main.types";
+import { PlayersRoles, TypeInitState } from "../../types/main.types";
 
 const Main = (): ReactElement => {
   const [modal, setModal] = useState<boolean>(false);
@@ -24,7 +24,7 @@ const Main = (): ReactElement => {
     <div className="main">
       <div className="ai">
         <div className="emoji">🤖</div>
-        <Score gameState={gameState} playerType="ai" />
+        <Score gameState={gameState} playerType={PlayersRoles.ai} />
       </div>
       <div className="central-block">
         {matches === 25 ? (
@@ -51,7 +51,7 @@ const Main = (): ReactElement => {
       </div>
       <div className="player">
         <div className="emoji">👨🏻</div>
-        <Score gameState={gameState} playerType="human" />
+        <Score gameState={gameState} playerType={PlayersRoles.player} />
       </div>
       {modal && (
         <Modal

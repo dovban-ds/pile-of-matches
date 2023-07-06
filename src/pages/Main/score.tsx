@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { TypeScoreProps } from "../../types/main.types";
+import { TypeScoreProps, PlayersRoles } from "../../types/main.types";
 
 const Score: FC<TypeScoreProps> = ({
   gameState,
@@ -7,7 +7,7 @@ const Score: FC<TypeScoreProps> = ({
 }: TypeScoreProps): ReactElement => {
   return (
     <div className="box">
-      {playerType === "ai"
+      {playerType === PlayersRoles.ai
         ? gameState.aiNumbs &&
           gameState.aiNumbs.map(
             (item: number, id: number): ReactElement => (
