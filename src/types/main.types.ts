@@ -20,7 +20,7 @@ export type TypeAiLogic = (
   gameState: TypeInitState,
   setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>,
   amount?: number
-) => TypeInitState;
+) => TypeInitState | void | React.Dispatch<React.SetStateAction<TypeInitState>>;
 
 export const enum PlayersRoles {
   ai,

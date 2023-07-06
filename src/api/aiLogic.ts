@@ -7,7 +7,7 @@ export const aiLogic: TypeAiLogic = (
   amount: number | undefined
 ) => {
   if (matches === 7) {
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 3],
@@ -15,7 +15,7 @@ export const aiLogic: TypeAiLogic = (
       })
     );
   } else if (matches === 6) {
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 2],
@@ -28,7 +28,7 @@ export const aiLogic: TypeAiLogic = (
       0
     );
     if (even % 2 === 0) {
-      setGameState(
+      return setGameState(
         (gameState: TypeInitState): TypeInitState => ({
           ...gameState,
           aiNumbs: [...gameState.aiNumbs, 2],
@@ -36,7 +36,7 @@ export const aiLogic: TypeAiLogic = (
         })
       );
     }
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 3],
@@ -44,12 +44,12 @@ export const aiLogic: TypeAiLogic = (
       })
     );
   } else if (matches === 2) {
-    const even = gameState.aiNumbs.reduce(
+    const even: number = gameState.aiNumbs.reduce(
       (acc: number, item: number): number => acc + item,
       0
     );
     if (even % 2 !== 0) {
-      setGameState(
+      return setGameState(
         (gameState: TypeInitState): TypeInitState => ({
           ...gameState,
           aiNumbs: [...gameState.aiNumbs, 1],
@@ -57,7 +57,7 @@ export const aiLogic: TypeAiLogic = (
         })
       );
     }
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 2],
@@ -65,7 +65,7 @@ export const aiLogic: TypeAiLogic = (
       })
     );
   } else if (amount === 3 && matches >= 3) {
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 1],
@@ -73,7 +73,7 @@ export const aiLogic: TypeAiLogic = (
       })
     );
   } else if (amount === 2 && matches >= 2) {
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 2],
@@ -81,7 +81,7 @@ export const aiLogic: TypeAiLogic = (
       })
     );
   } else if (amount === 1 && matches >= 1) {
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 3],
@@ -91,7 +91,7 @@ export const aiLogic: TypeAiLogic = (
   } else if (matches === 0) {
     return gameState;
   } else {
-    setGameState(
+    return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
         aiNumbs: [...gameState.aiNumbs, 1],
@@ -99,7 +99,6 @@ export const aiLogic: TypeAiLogic = (
       })
     );
   }
-  return gameState;
 };
 
 export const aiFirstTurnLogic = (
