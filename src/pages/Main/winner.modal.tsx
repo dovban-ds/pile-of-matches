@@ -7,7 +7,11 @@ const WinnerModal: FC<any> = ({ numbs }: any): ReactElement => {
       <div className="modal-box">
         <div className="modal-title">Congratulation! The winner is:</div>
         <div className="modal-body">
-          {even % 2 === 0 ? <p>👨🏻</p> : <p>🤖</p>}
+          {even % 2 === 0 ? (
+            <p className="emoji">👨🏻</p>
+          ) : (
+            <p className="emoji">🤖</p>
+          )}
         </div>
       </div>
     </div>

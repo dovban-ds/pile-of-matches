@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import aiLogic from "../../api/aiLogic";
+import { aiLogic } from "../../api/aiLogic";
 
 const Modal: FC<any> = ({
   offModal,
@@ -7,17 +7,13 @@ const Modal: FC<any> = ({
   setGameState,
 }: any): ReactElement => {
   const handleClick = (amount: any) => {
-    const { matches, numbs } = gameState;
-    const updatedNumbs = [...numbs, amount];
-    const updatedMatches = matches - amount;
-
     setGameState((prevState: any) => ({
       ...prevState,
-      numbs: updatedNumbs,
-      matches: updatedMatches,
+      numbs: [...gameState.numbs, amount],
+      matches: gameState.matches - amount,
     }));
 
-    aiLogic(updatedMatches, gameState, amount, setGameState);
+    aiLogic(gameState.matches - amount, gameState, amount, setGameState);
     return offModal(false);
   };
 

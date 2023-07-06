@@ -1,4 +1,4 @@
-const aiLogic: any = (
+export const aiLogic: any = (
   matches: any,
   gameState: any,
   amount: any,
@@ -9,6 +9,12 @@ const aiLogic: any = (
       ...gameState,
       aiNumbs: [...gameState.aiNumbs, 3],
       matches: gameState.matches - 3,
+    }));
+  } else if (matches === 6) {
+    return setGameState((gameState: any) => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, 2],
+      matches: gameState.matches - 2,
     }));
   } else if (matches === 3) {
     const even = gameState.aiNumbs.reduce(
@@ -65,4 +71,16 @@ const aiLogic: any = (
   }
 };
 
-export default aiLogic;
+export const aiFirstTurnLogic = (
+  matches: any,
+  gameState: any,
+  setGameState: any
+) => {
+  if (matches % 2 === 0 && matches > 3) {
+    aiLogic(matches, gameState, 1, setGameState);
+  } else if (matches % 2 !== 0 && matches > 2) {
+    aiLogic(matches, gameState, 2, setGameState);
+  } else if (matches % 2 === 0 && matches > 1) {
+    aiLogic(matches, gameState, 3, setGameState);
+  }
+};
