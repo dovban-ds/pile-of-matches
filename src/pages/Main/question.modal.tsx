@@ -16,7 +16,7 @@ const Modal: FC<TypeModalProps> = ({
       })
     );
 
-    aiLogic(gameState.matches - amount, gameState, amount, setGameState);
+    aiLogic(gameState.matches - amount, gameState, setGameState, amount);
     return offModal(false);
   };
 

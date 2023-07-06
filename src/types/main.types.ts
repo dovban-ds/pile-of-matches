@@ -15,6 +15,13 @@ export type TypeScoreProps = {
   playerType: PlayersRoles;
 };
 
+export type TypeAiLogic = (
+  matches: number,
+  gameState: TypeInitState,
+  setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>,
+  amount?: number
+) => TypeInitState;
+
 export const enum PlayersRoles {
   ai,
   player,
