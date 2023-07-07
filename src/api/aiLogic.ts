@@ -39,15 +39,16 @@ export const aiFirstTurnLogic = (
 };
 
 export const aiSpecLogic: any = (
+  matches: number,
   gameState: any,
   setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>
 ) => {
-  let firstNumb = gameState.matches - +gameState.maxToCarry;
-  let secondNumb = gameState.matches - (+gameState.maxToCarry - 2);
+  let firstNumb = matches - +gameState.maxToCarry;
+  let secondNumb = matches - (+gameState.maxToCarry - 2);
 
   if (!(gameState.maxToCarry % 2)) {
-    firstNumb = gameState.matches - (+gameState.maxToCarry - 1);
-    secondNumb = gameState.matches - (+gameState.maxToCarry - 3);
+    firstNumb = matches - (+gameState.maxToCarry - 1);
+    secondNumb = matches - (+gameState.maxToCarry - 3);
   }
 
   if (firstNumb <= 0 || secondNumb <= 0) return;

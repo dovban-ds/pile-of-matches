@@ -23,6 +23,8 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
       alert("Please, fill both gaps!");
     } else if (value.maxToCarry >= 2 * value.nValue + 1) {
       alert("Matches maximum value should me less then 2n+1 expression");
+    } else if (+value.maxToCarry <= 0 || +value.nValue <= 0) {
+      alert("Do not use 0 or negative in your answers!");
     } else {
       setGameState({
         matches: oddValue,

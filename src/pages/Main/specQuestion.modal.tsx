@@ -21,7 +21,7 @@ const SpecQuestionModal: any = ({ offModal }: any): any => {
         matches: gameState.matches - +takenMatches,
         numbs: [...gameState.numbs, +takenMatches],
       });
-      aiSpecLogic(gameState, setGameState);
+      aiSpecLogic(gameState.matches - +takenMatches, gameState, setGameState);
       offModal(false);
     }
   };
