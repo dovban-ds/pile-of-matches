@@ -1,7 +1,7 @@
 import { ReactElement, useState, FC } from "react";
 import CustomGame from "./customGame.modal";
 
-const HeaderMenu: FC<any> = (): ReactElement => {
+const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
   const [rulesModal, setRulesModal] = useState(false);
   const [customGameModal, setCustomGameModal] = useState(false);
 
@@ -22,6 +22,16 @@ const HeaderMenu: FC<any> = (): ReactElement => {
       >
         Custom game
       </button>
+      {matches !== 25 && (
+        <button
+          className="rules"
+          onClick={() => {
+            setGameState({ matches: 25, numbs: [], aiNumbs: [] });
+          }}
+        >
+          Restart
+        </button>
+      )}
       {customGameModal && (
         <CustomGame setCustomGameModal={setCustomGameModal} />
       )}

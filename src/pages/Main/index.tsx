@@ -15,7 +15,7 @@ const Main = (): ReactElement => {
     aiNumbs: [],
   });
 
-  const { matches, numbs, aiNumbs } = gameState;
+  const { matches, aiNumbs } = gameState;
 
   const handleClick = (): void => {
     setModal(true);
@@ -23,7 +23,7 @@ const Main = (): ReactElement => {
 
   return (
     <div className="general-container">
-      <HeaderMenu />
+      <HeaderMenu matches={matches} setGameState={setGameState} />
       <div className="main">
         <div className="ai">
           <div className="emoji">🤖</div>
@@ -64,11 +64,7 @@ const Main = (): ReactElement => {
           />
         )}
         {matches === 0 && (
-          <WinnerModal
-            numbs={numbs}
-            gameState={gameState}
-            setGameState={setGameState}
-          />
+          <WinnerModal gameState={gameState} setGameState={setGameState} />
         )}
       </div>
     </div>

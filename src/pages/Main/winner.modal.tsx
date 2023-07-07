@@ -1,11 +1,7 @@
 import { FC, ReactElement } from "react";
 
-const WinnerModal: FC<any> = ({
-  numbs,
-  gameState,
-  setGameState,
-}): ReactElement => {
-  const even: number = numbs.reduce(
+const WinnerModal: FC<any> = ({ gameState, setGameState }): ReactElement => {
+  const even: number = gameState.numbs.reduce(
     (acc: number, item: number): number => acc + item,
     0
   );

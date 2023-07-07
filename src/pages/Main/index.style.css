@@ -19,6 +19,8 @@ input[type="number"] {
 
 .menu {
   padding: 15px 15px;
+  display: flex;
+  /* justify-content: space-between; */
 }
 
 .rules {
