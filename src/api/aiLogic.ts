@@ -37,3 +37,32 @@ export const aiFirstTurnLogic = (
     })
   );
 };
+
+export const aiSpecLogic: any = (
+  gameState: any,
+  setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>
+) => {
+  let firstNumb = gameState.matches - +gameState.maxToCarry;
+  let secondNumb = gameState.matches - (+gameState.maxToCarry - 2);
+
+  if (!(gameState.maxToCarry % 2)) {
+    firstNumb = gameState.matches - (+gameState.maxToCarry - 1);
+    secondNumb = gameState.matches - (+gameState.maxToCarry - 3);
+  }
+
+  if (firstNumb <= 0 || secondNumb <= 0) return;
+
+  if (!(secondNumb % 4) || secondNumb % 4 === 1) {
+    return setGameState((gameState: any): any => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, +gameState.maxToCarry - 2],
+      matches: gameState.matches - (+gameState.maxToCarry - 2),
+    }));
+  } else if (!(firstNumb % 4) || firstNumb % 4 === 1) {
+    return setGameState((gameState: any): any => ({
+      ...gameState,
+      aiNumbs: [...gameState.aiNumbs, +gameState.maxToCarry],
+      matches: gameState.matches - +gameState.maxToCarry,
+    }));
+  }
+};

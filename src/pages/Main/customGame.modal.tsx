@@ -3,7 +3,7 @@ import { GameContext } from "../../providers/gameState.provider";
 
 const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
   const [value, setValue] = useState<any>({
-    maxMatches: "",
+    nValue: "",
     maxToCarry: "",
   });
   const { setGameState } = useContext(GameContext);
@@ -16,20 +16,16 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
   };
 
   const handleSubmit = () => {
-    if (!value.maxToCarry || !value.maxMatches) {
+    const oddValue = 2 * +value.nValue + 1;
+    if (oddValue === 25) {
+      alert("Try to choose what not already there");
+    } else if (!value.nValue || !value.maxToCarry) {
       alert("Please, fill both gaps!");
-    } else if (!(value.maxMatches % 2)) {
-      const oddValue = +value.maxMatches + 1;
-      setGameState({
-        matches: oddValue,
-        numbs: [],
-        aiNumbs: [],
-        maxToCarry: value.maxToCarry,
-      });
-      setCustomGameModal(false);
+    } else if (value.maxToCarry >= 2 * value.nValue + 1) {
+      alert("Matches maximum value should me less then 2n+1 expression");
     } else {
       setGameState({
-        matches: value.maxMatches,
+        matches: oddValue,
         numbs: [],
         aiNumbs: [],
         maxToCarry: value.maxToCarry,
@@ -59,17 +55,17 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
         <div className="modal-body">
           <input
             type="number"
-            name="maxMatches"
-            placeholder="Matches in a pile (odd number)"
+            name="nValue"
+            placeholder="Choose the n for 2n + 1 expression"
             onKeyDown={(e) =>
               ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
             }
-            value={value.maxMatches}
+            value={value.nValue}
             onChange={handleChange}
           />
           <p>
-            ... otherwise, the system adds a number to your figure. Still not
-            all your rules are welcome here!
+            ... there are 2n + 1 matches in the pile. U can adjust the n param,
+            so what it'll be?
           </p>
           <hr></hr>
           <input
