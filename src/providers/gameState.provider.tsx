@@ -1,33 +1,21 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactElement, FC, Context } from "react";
+import { TypeGeneralGame, TypeInitState } from "../types/main.types";
 
-interface GameState {
-  matches: number;
-  numbs: number[];
-  aiNumbs: number[];
-  maxToCarry?: any;
-}
+export const GameContext: Context<TypeGeneralGame> =
+  createContext<TypeGeneralGame>({
+    gameState: {
+      matches: 25,
+      numbs: [],
+      aiNumbs: [],
+      maxToCarry: null,
+    },
+    setGameState: (): void => {},
+  });
 
-interface GameContextProps {
-  gameState: GameState;
-  setGameState: React.Dispatch<React.SetStateAction<GameState>>;
-}
-
-export const GameContext = createContext<GameContextProps>({
-  gameState: {
-    matches: 25,
-    numbs: [],
-    aiNumbs: [],
-    maxToCarry: null,
-  },
-  setGameState: () => {},
-});
-
-interface GameProviderProps {
-  children: ReactNode;
-}
-
-export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
-  const [gameState, setGameState] = useState<GameState>({
+export const GameProvider: ({ children }: any) => ReactElement = ({
+  children,
+}: any): ReactElement => {
+  const [gameState, setGameState] = useState<TypeInitState>({
     matches: 25,
     numbs: [],
     aiNumbs: [],

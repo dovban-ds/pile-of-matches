@@ -1,6 +1,10 @@
 import { FC, ReactElement, useContext } from "react";
 import { aiLogic } from "../../api/aiLogic";
-import { TypeInitState, TypeModalProps } from "../../types/main.types";
+import {
+  TypeGeneralGame,
+  TypeInitState,
+  TypeModalProps,
+} from "../../types/main.types";
 import { GameContext } from "../../providers/gameState.provider";
 import SpecQuestionModal from "./specQuestion.modal";
 
@@ -9,7 +13,7 @@ const Modal: FC<TypeModalProps> = ({
 }: TypeModalProps): ReactElement => {
   const { gameState, setGameState } = useContext(GameContext);
 
-  const handleClick = (amount: number): void => {
+  const handleClick: (amount: number) => void = (amount: number): void => {
     setGameState(
       (prevState: TypeInitState): TypeInitState => ({
         ...prevState,
@@ -23,15 +27,15 @@ const Modal: FC<TypeModalProps> = ({
   return (
     <div
       className="modal"
-      onClick={() => {
+      onClick={(): void => {
         offModal(false);
       }}
     >
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box" onClick={(e): void => e.stopPropagation()}>
         <div className="modal-title">
           <p>{gameState.matches} matches in a pile</p>
           <div
-            onClick={() => {
+            onClick={(): void => {
               offModal(false);
             }}
           >

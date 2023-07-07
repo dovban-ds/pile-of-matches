@@ -8,12 +8,12 @@ import { PlayersRoles } from "../../types/main.types";
 import HeaderMenu from "./headerMenu";
 import { GameContext } from "../../providers/gameState.provider";
 
-const Main = (): ReactElement => {
+const Main: () => ReactElement = (): ReactElement => {
   const [modal, setModal] = useState<boolean>(false);
   const { gameState, setGameState } = useContext(GameContext);
   const { matches, numbs } = gameState;
 
-  const handleClick = (): void => {
+  const handleClick: () => void = (): void => {
     setModal(true);
   };
 

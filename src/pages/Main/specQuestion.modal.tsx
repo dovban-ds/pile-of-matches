@@ -1,17 +1,23 @@
-import { useContext, useState } from "react";
+import React, { ChangeEvent } from "react";
+import { useContext, useState, FC, ReactElement } from "react";
 import { GameContext } from "../../providers/gameState.provider";
 import { aiSpecLogic } from "../../api/aiLogic";
+import { TypeGeneralGame, TypeModalProps } from "../../types/main.types";
 
-const SpecQuestionModal: any = ({ offModal }: any): any => {
+const SpecQuestionModal: FC<TypeModalProps> = ({
+  offModal,
+}: TypeModalProps): ReactElement => {
   const { gameState, setGameState } = useContext(GameContext);
-  const [takenMatches, setTakenMatches] = useState<any>("");
+  const [takenMatches, setTakenMatches] = useState<number>(0);
 
-  const handleChange: any = (e: any): any => {
+  const handleChange: (e: ChangeEvent<any>) => void = (
+    e: React.ChangeEvent<any>
+  ): void => {
     setTakenMatches(e.target.value);
   };
 
-  const handleClick: any = (): any => {
-    if (takenMatches > +gameState.maxToCarry || takenMatches < 1) {
+  const handleClick: () => void = (): void => {
+    if (takenMatches > +gameState.maxToCarry! || takenMatches < 1) {
       return alert(`Enter values from 1 to ${gameState.maxToCarry}`);
     } else if (takenMatches > gameState.matches) {
       alert("Stop kidding me!");

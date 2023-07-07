@@ -1,5 +1,6 @@
 import { ReactElement, FC, useState, useContext } from "react";
 import { GameContext } from "../../providers/gameState.provider";
+import { TypeInitState } from "../../types/main.types";
 
 const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
   const [value, setValue] = useState<any>({
@@ -8,14 +9,16 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
   });
   const { setGameState } = useContext(GameContext);
 
-  const handleChange = (event: any) => {
-    setValue((prevState: any) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
+  const handleChange = (event: any): void => {
+    setValue(
+      (prevState: TypeInitState): TypeInitState => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit: () => void = (): void => {
     const oddValue = 2 * +value.nValue + 1;
     if (oddValue === 25) {
       alert("Try to choose what not already there");
@@ -43,7 +46,7 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
         setCustomGameModal(false);
       }}
     >
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box" onClick={(e): void => e.stopPropagation()}>
         <div className="modal-title">
           <p>Set up your own rules!</p>
           <div

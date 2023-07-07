@@ -1,13 +1,14 @@
 import { ReactElement, useState, FC, useContext } from "react";
 import CustomGame from "./customGame.modal";
 import { GameContext } from "../../providers/gameState.provider";
+import { TypeGeneralGame } from "../../types/main.types";
 
-const HeaderMenu: FC<any> = (): ReactElement => {
-  const [rulesModal, setRulesModal] = useState(false);
-  const [customGameModal, setCustomGameModal] = useState(false);
-  const { gameState, setGameState } = useContext(GameContext);
+const HeaderMenu: () => ReactElement = (): ReactElement => {
+  const [rulesModal, setRulesModal] = useState<boolean>(false);
+  const [customGameModal, setCustomGameModal] = useState<boolean>(false);
+  const { gameState, setGameState } = useContext<TypeGeneralGame>(GameContext);
 
-  const handleClick = () => {
+  const handleClick: () => void = (): void => {
     setRulesModal(true);
   };
 
@@ -19,7 +20,7 @@ const HeaderMenu: FC<any> = (): ReactElement => {
       {gameState.matches === 25 && (
         <button
           className="custom-game"
-          onClick={() => {
+          onClick={(): void => {
             setCustomGameModal(true);
           }}
         >
@@ -29,7 +30,7 @@ const HeaderMenu: FC<any> = (): ReactElement => {
       {gameState.matches !== 25 && (
         <button
           className="rules"
-          onClick={() => {
+          onClick={(): void => {
             setGameState({ matches: 25, numbs: [], aiNumbs: [] });
           }}
         >
@@ -42,7 +43,7 @@ const HeaderMenu: FC<any> = (): ReactElement => {
       {rulesModal && (
         <div
           className="modal"
-          onClick={() => {
+          onClick={(): void => {
             setRulesModal(false);
           }}
         >
@@ -50,7 +51,7 @@ const HeaderMenu: FC<any> = (): ReactElement => {
             <div className="modal-title">
               <p>Pile of Matches</p>
               <div
-                onClick={() => {
+                onClick={(): void => {
                   setRulesModal(false);
                 }}
               >

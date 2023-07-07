@@ -1,8 +1,9 @@
 import { FC, ReactElement, useContext } from "react";
 import { GameContext } from "../../providers/gameState.provider";
+import { TypeGeneralGame } from "../../types/main.types";
 
-const WinnerModal: FC<any> = (): ReactElement => {
-  const { gameState, setGameState } = useContext(GameContext);
+const WinnerModal: () => ReactElement = (): ReactElement => {
+  const { gameState, setGameState } = useContext<TypeGeneralGame>(GameContext);
   const even: number = gameState.numbs.reduce(
     (acc: number, item: number): number => acc + item,
     0
@@ -10,7 +11,7 @@ const WinnerModal: FC<any> = (): ReactElement => {
   return (
     <div
       className="modal"
-      onClick={() => {
+      onClick={(): void => {
         setGameState({
           matches: 25,
           numbs: [],
@@ -18,7 +19,7 @@ const WinnerModal: FC<any> = (): ReactElement => {
         });
       }}
     >
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box" onClick={(e): void => e.stopPropagation()}>
         <div className="modal-title">
           <p>Congratulation! The winner is:</p>
           <div
