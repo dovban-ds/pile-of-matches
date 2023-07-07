@@ -1,6 +1,8 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useContext } from "react";
+import { GameContext } from "../../providers/gameState.provider";
 
-const WinnerModal: FC<any> = ({ gameState, setGameState }): ReactElement => {
+const WinnerModal: FC<any> = (): ReactElement => {
+  const { gameState, setGameState } = useContext(GameContext);
   const even: number = gameState.numbs.reduce(
     (acc: number, item: number): number => acc + item,
     0

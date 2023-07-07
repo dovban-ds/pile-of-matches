@@ -1,10 +1,11 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useContext } from "react";
 import { TypeScoreProps, PlayersRoles } from "../../types/main.types";
+import { GameContext } from "../../providers/gameState.provider";
 
 const Score: FC<TypeScoreProps> = ({
-  gameState,
   playerType,
 }: TypeScoreProps): ReactElement => {
+  const { gameState } = useContext(GameContext);
   return (
     <div className="box">
       {playerType === PlayersRoles.ai

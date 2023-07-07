@@ -1,10 +1,9 @@
-import { ReactElement, FC, useState } from "react";
+import { ReactElement, FC, useState, useContext } from "react";
+import { GameContext } from "../../providers/gameState.provider";
 
-const CustomGame: FC<any> = ({
-  setCustomGameModal,
-  setGameState,
-}: any): ReactElement => {
+const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
   const [value, setValue] = useState<any>("");
+  const { setGameState } = useContext(GameContext);
 
   const handleSubmit = () => {
     if (!(value % 2)) {

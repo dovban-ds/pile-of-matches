@@ -32,8 +32,8 @@ export const aiFirstTurnLogic = (
   setGameState(
     (gameState: TypeInitState): TypeInitState => ({
       ...gameState,
-      aiNumbs: [...gameState.aiNumbs, 3],
-      matches: gameState.matches - 3,
+      aiNumbs: [...gameState.aiNumbs, 1],
+      matches: gameState.matches - 1,
     })
   );
 };

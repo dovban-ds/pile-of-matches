@@ -1,12 +1,12 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useContext } from "react";
 import { aiLogic } from "../../api/aiLogic";
 import { TypeInitState, TypeModalProps } from "../../types/main.types";
+import { GameContext } from "../../providers/gameState.provider";
 
 const Modal: FC<TypeModalProps> = ({
   offModal,
-  gameState,
-  setGameState,
 }: TypeModalProps): ReactElement => {
+  const { gameState, setGameState } = useContext(GameContext);
   const handleClick = (amount: number): void => {
     setGameState(
       (prevState: TypeInitState): TypeInitState => ({

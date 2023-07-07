@@ -6,12 +6,9 @@ export type TypeInitState = {
 
 export type TypeModalProps = {
   offModal: (value: boolean | ((prevVar: boolean) => boolean)) => void;
-  gameState: TypeInitState;
-  setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>;
 };
 
 export type TypeScoreProps = {
-  gameState: TypeInitState;
   playerType: PlayersRoles;
 };
 

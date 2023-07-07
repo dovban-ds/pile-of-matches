@@ -1,9 +1,11 @@
-import { ReactElement, useState, FC } from "react";
+import { ReactElement, useState, FC, useContext } from "react";
 import CustomGame from "./customGame.modal";
+import { GameContext } from "../../providers/gameState.provider";
 
-const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
+const HeaderMenu: FC<any> = (): ReactElement => {
   const [rulesModal, setRulesModal] = useState(false);
   const [customGameModal, setCustomGameModal] = useState(false);
+  const { gameState, setGameState } = useContext(GameContext);
 
   const handleClick = () => {
     setRulesModal(true);
@@ -14,7 +16,7 @@ const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
       <button className="rules" onClick={handleClick}>
         Rules
       </button>
-      {matches === 25 && (
+      {gameState.matches === 25 && (
         <button
           className="custom-game"
           onClick={() => {
@@ -24,7 +26,7 @@ const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
           Custom game
         </button>
       )}
-      {matches !== 25 && (
+      {gameState.matches !== 25 && (
         <button
           className="rules"
           onClick={() => {
@@ -35,10 +37,7 @@ const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
         </button>
       )}
       {customGameModal && (
-        <CustomGame
-          setCustomGameModal={setCustomGameModal}
-          setGameState={setGameState}
-        />
+        <CustomGame setCustomGameModal={setCustomGameModal} />
       )}
       {rulesModal && (
         <div

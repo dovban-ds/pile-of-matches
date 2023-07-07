@@ -1,4 +1,4 @@
-import { ReactElement, useState, FC } from "react";
+import { ReactElement, useState, useContext } from "react";
 import "./index.style.css";
 import Modal from "./question.modal";
 import Score from "./score";
@@ -6,16 +6,12 @@ import WinnerModal from "./winner.modal";
 import { aiFirstTurnLogic } from "../../api/aiLogic";
 import { PlayersRoles, TypeInitState } from "../../types/main.types";
 import HeaderMenu from "./headerMenu";
+import { GameContext } from "../../providers/gameState.provider";
 
 const Main = (): ReactElement => {
   const [modal, setModal] = useState<boolean>(false);
-  const [gameState, setGameState] = useState<TypeInitState>({
-    matches: 25,
-    numbs: [],
-    aiNumbs: [],
-  });
-
-  const { matches, aiNumbs } = gameState;
+  const { gameState, setGameState } = useContext(GameContext);
+  const { matches, numbs } = gameState;
 
   const handleClick = (): void => {
     setModal(true);
@@ -23,16 +19,16 @@ const Main = (): ReactElement => {
 
   return (
     <div className="general-container">
-      <HeaderMenu matches={matches} setGameState={setGameState} />
+      <HeaderMenu />
       <div className="main">
         <div className="ai">
           <div className="emoji">🤖</div>
-          <Score gameState={gameState} playerType={PlayersRoles.ai} />
+          <Score playerType={PlayersRoles.ai} />
         </div>
         <div className="central-block">
-          {matches === 25 ? (
+          {!numbs.length ? (
             <p className="init-text btn" onClick={handleClick}>
-              Start the battle!
+              Take your first!
             </p>
           ) : (
             <p className="init-text btn" onClick={handleClick}>
@@ -41,7 +37,7 @@ const Main = (): ReactElement => {
           )}
           <div className="emoji-spec">🔥</div>
           <p className="counter">{matches}</p>
-          {!aiNumbs.length && (
+          {matches === 25 && (
             <button
               className="init-text btn"
               onClick={(): void => {
@@ -54,18 +50,10 @@ const Main = (): ReactElement => {
         </div>
         <div className="player">
           <div className="emoji">👨🏻</div>
-          <Score gameState={gameState} playerType={PlayersRoles.player} />
+          <Score playerType={PlayersRoles.player} />
         </div>
-        {modal && (
-          <Modal
-            offModal={setModal}
-            gameState={gameState}
-            setGameState={setGameState}
-          />
-        )}
-        {matches === 0 && (
-          <WinnerModal gameState={gameState} setGameState={setGameState} />
-        )}
+        {modal && <Modal offModal={setModal} />}
+        {matches === 0 && <WinnerModal />}
       </div>
     </div>
   );
