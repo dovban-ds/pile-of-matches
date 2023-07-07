@@ -2,11 +2,13 @@ import { FC, ReactElement, useContext } from "react";
 import { aiLogic } from "../../api/aiLogic";
 import { TypeInitState, TypeModalProps } from "../../types/main.types";
 import { GameContext } from "../../providers/gameState.provider";
+import SpecQuestionModal from "./specQuestion.modal";
 
 const Modal: FC<TypeModalProps> = ({
   offModal,
 }: TypeModalProps): ReactElement => {
   const { gameState, setGameState } = useContext(GameContext);
+
   const handleClick = (amount: number): void => {
     setGameState(
       (prevState: TypeInitState): TypeInitState => ({
@@ -15,11 +17,9 @@ const Modal: FC<TypeModalProps> = ({
         matches: gameState.matches - amount,
       })
     );
-
     aiLogic(gameState.matches - amount, setGameState);
     return offModal(false);
   };
-
   return (
     <div
       className="modal"
@@ -40,35 +40,39 @@ const Modal: FC<TypeModalProps> = ({
         </div>
         <div className="modal-body">
           <p>I am strong enough to carry ...</p>
-          <div className="buttons-bar">
-            {gameState.matches >= 1 && (
-              <button
-                onClick={(): void => {
-                  handleClick(1);
-                }}
-              >
-                1
-              </button>
-            )}
-            {gameState.matches >= 2 && (
-              <button
-                onClick={(): void => {
-                  handleClick(2);
-                }}
-              >
-                2
-              </button>
-            )}
-            {gameState.matches >= 3 && (
-              <button
-                onClick={(): void => {
-                  handleClick(3);
-                }}
-              >
-                3
-              </button>
-            )}
-          </div>
+          {gameState.maxToCarry ? (
+            <SpecQuestionModal offModal={offModal} />
+          ) : (
+            <div className="buttons-bar">
+              {gameState.matches >= 1 && (
+                <button
+                  onClick={(): void => {
+                    handleClick(1);
+                  }}
+                >
+                  1
+                </button>
+              )}
+              {gameState.matches >= 2 && (
+                <button
+                  onClick={(): void => {
+                    handleClick(2);
+                  }}
+                >
+                  2
+                </button>
+              )}
+              {gameState.matches >= 3 && (
+                <button
+                  onClick={(): void => {
+                    handleClick(3);
+                  }}
+                >
+                  3
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Modal from "./question.modal";
 import Score from "./score";
 import WinnerModal from "./winner.modal";
 import { aiFirstTurnLogic } from "../../api/aiLogic";
-import { PlayersRoles, TypeInitState } from "../../types/main.types";
+import { PlayersRoles } from "../../types/main.types";
 import HeaderMenu from "./headerMenu";
 import { GameContext } from "../../providers/gameState.provider";
 

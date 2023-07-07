@@ -4,6 +4,7 @@ interface GameState {
   matches: number;
   numbs: number[];
   aiNumbs: number[];
+  maxToCarry?: any;
 }
 
 interface GameContextProps {
@@ -16,6 +17,7 @@ export const GameContext = createContext<GameContextProps>({
     matches: 25,
     numbs: [],
     aiNumbs: [],
+    maxToCarry: null,
   },
   setGameState: () => {},
 });
@@ -29,6 +31,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     matches: 25,
     numbs: [],
     aiNumbs: [],
+    maxToCarry: null,
   });
 
   return (
