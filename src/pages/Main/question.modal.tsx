@@ -16,7 +16,7 @@ const Modal: FC<TypeModalProps> = ({
       })
     );
 
-    aiLogic(gameState.matches - amount, gameState, setGameState, amount);
+    aiLogic(gameState.matches - amount, setGameState);
     return offModal(false);
   };
 
@@ -41,13 +41,15 @@ const Modal: FC<TypeModalProps> = ({
         <div className="modal-body">
           <p>I am strong enough to carry ...</p>
           <div className="buttons-bar">
-            <button
-              onClick={(): void => {
-                handleClick(1);
-              }}
-            >
-              1
-            </button>
+            {gameState.matches >= 1 && (
+              <button
+                onClick={(): void => {
+                  handleClick(1);
+                }}
+              >
+                1
+              </button>
+            )}
             {gameState.matches >= 2 && (
               <button
                 onClick={(): void => {

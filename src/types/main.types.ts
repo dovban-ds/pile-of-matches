@@ -17,7 +17,6 @@ export type TypeScoreProps = {
 
 export type TypeAiLogic = (
   matches: number,
-  gameState: TypeInitState,
   setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>,
   amount?: number
 ) => TypeInitState | void | React.Dispatch<React.SetStateAction<TypeInitState>>;

@@ -45,7 +45,7 @@ const Main = (): ReactElement => {
             <button
               className="init-text btn"
               onClick={(): void => {
-                aiFirstTurnLogic(matches, gameState, setGameState);
+                aiFirstTurnLogic(setGameState);
               }}
             >
               Succumb to AI

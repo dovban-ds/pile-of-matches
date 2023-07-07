@@ -14,14 +14,16 @@ const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
       <button className="rules" onClick={handleClick}>
         Rules
       </button>
-      <button
-        className="custom-game"
-        onClick={() => {
-          setCustomGameModal(true);
-        }}
-      >
-        Custom game
-      </button>
+      {matches === 25 && (
+        <button
+          className="custom-game"
+          onClick={() => {
+            setCustomGameModal(true);
+          }}
+        >
+          Custom game
+        </button>
+      )}
       {matches !== 25 && (
         <button
           className="rules"
@@ -33,7 +35,10 @@ const HeaderMenu: FC<any> = ({ matches, setGameState }): ReactElement => {
         </button>
       )}
       {customGameModal && (
-        <CustomGame setCustomGameModal={setCustomGameModal} />
+        <CustomGame
+          setCustomGameModal={setCustomGameModal}
+          setGameState={setGameState}
+        />
       )}
       {rulesModal && (
         <div
