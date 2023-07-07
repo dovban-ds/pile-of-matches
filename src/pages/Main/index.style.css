@@ -134,7 +134,7 @@ input[type="number"] {
   color: rgb(127, 124, 124);
 }
 
-/* Question modal settings */
+/* General modal settings */
 .modal {
   font-weight: 600;
   font-family: "Agdasima", sans-serif;
@@ -148,6 +148,7 @@ input[type="number"] {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1;
+  overflow-y: auto;
 }
 
 .modal-box {
@@ -172,11 +173,13 @@ input[type="number"] {
   margin-bottom: 35px;
   display: flex;
   width: 100%;
+  height: 50px;
   justify-content: space-between;
 }
 
 .modal-title p {
   margin: 0 auto;
+  align-self: flex-end;
 }
 
 .modal-title div {
@@ -238,6 +241,10 @@ input {
 
 .buttons-bar button:hover {
   background-color: rgb(135, 23, 23);
+}
+
+.spec-cross {
+  padding-bottom: 5px;
 }
 
 /* Small icons of choosen matches settings */
@@ -415,7 +422,7 @@ input {
   }
 }
 
-@media screen and (max-height: 300px) {
+@media screen and (max-height: 420px) {
   .modal-box {
     max-width: 50%;
     font-size: 0.8rem;

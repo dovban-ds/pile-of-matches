@@ -20,10 +20,13 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
           </div>
         </div>
         <div className="modal-body">
-          <input type="number" placeholder="Odd number"></input>
+          <input
+            type="number"
+            placeholder="Matches in a pile (odd number)"
+          ></input>
           <p>
-            ... otherwise, the system adds 1 to your figure. Still not all your
-            rules are welcome here!
+            ... otherwise, the system adds a number to your figure. Still not
+            all your rules are welcome here!
           </p>
           <hr></hr>
           <input

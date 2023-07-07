@@ -63,7 +63,13 @@ const Main = (): ReactElement => {
             setGameState={setGameState}
           />
         )}
-        {matches === 0 && <WinnerModal numbs={numbs} />}
+        {matches === 0 && (
+          <WinnerModal
+            numbs={numbs}
+            gameState={gameState}
+            setGameState={setGameState}
+          />
+        )}
       </div>
     </div>
   );
