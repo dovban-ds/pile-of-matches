@@ -2,13 +2,13 @@ import React, { ChangeEvent } from "react";
 import { useContext, useState, FC, ReactElement } from "react";
 import { GameContext } from "../../providers/gameState.provider";
 import { aiSpecLogic } from "../../api/aiLogic";
-import { TypeGeneralGame, TypeModalProps } from "../../types/main.types";
+import { TypeModalProps } from "../../types/main.types";
 
 const SpecQuestionModal: FC<TypeModalProps> = ({
   offModal,
 }: TypeModalProps): ReactElement => {
   const { gameState, setGameState } = useContext(GameContext);
-  const [takenMatches, setTakenMatches] = useState<number>(0);
+  const [takenMatches, setTakenMatches] = useState<string | number>("");
 
   const handleChange: (e: ChangeEvent<any>) => void = (
     e: React.ChangeEvent<any>
@@ -17,9 +17,9 @@ const SpecQuestionModal: FC<TypeModalProps> = ({
   };
 
   const handleClick: () => void = (): void => {
-    if (takenMatches > +gameState.maxToCarry! || takenMatches < 1) {
+    if (+takenMatches > +gameState.maxToCarry! || +takenMatches < 1) {
       return alert(`Enter values from 1 to ${gameState.maxToCarry}`);
-    } else if (takenMatches > gameState.matches) {
+    } else if (+takenMatches > gameState.matches) {
       alert("Stop kidding me!");
     } else {
       setGameState({

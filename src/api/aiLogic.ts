@@ -53,6 +53,32 @@ export const aiSpecLogic: any = (
     secondNumb = matches - (+gameState.maxToCarry! - 3);
   }
 
+  if (matches < gameState.maxToCarry!) {
+    if (!(matches % 2)) {
+      firstNumb = matches - (matches - 1);
+      secondNumb = matches - (matches - 3);
+    } else {
+      firstNumb = matches - matches;
+      secondNumb = matches - (matches - 2);
+    }
+
+    if (!(secondNumb % 4) || secondNumb % 4 === 1) {
+      return setGameState(
+        (gameState: TypeInitState): TypeInitState => ({
+          ...gameState,
+          aiNumbs: [...gameState.aiNumbs, matches - 2],
+          matches: gameState.matches - (matches - 2),
+        })
+      );
+    } else if (!(firstNumb % 4) || firstNumb % 4 === 1) {
+      return setGameState((gameState: any): any => ({
+        ...gameState,
+        aiNumbs: [...gameState.aiNumbs, matches],
+        matches: gameState.matches - matches,
+      }));
+    }
+  }
+
   if (firstNumb <= 0 || secondNumb <= 0) return;
 
   if (!(secondNumb % 4) || secondNumb % 4 === 1) {
