@@ -42,7 +42,7 @@ const CustomGame: FC<any> = ({ setCustomGameModal }: any): ReactElement => {
   return (
     <div
       className="modal"
-      onClick={() => {
+      onClick={(): void => {
         setCustomGameModal(false);
       }}
     >

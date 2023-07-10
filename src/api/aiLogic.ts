@@ -45,15 +45,27 @@ export const aiSpecLogic: any = (
   gameState: TypeInitState,
   setGameState: React.Dispatch<React.SetStateAction<TypeInitState>>
 ): void => {
-  let firstNumb: number = matches - +gameState.maxToCarry!;
-  let secondNumb: number = matches - (+gameState.maxToCarry! - 2);
+  const { maxToCarry, aiNumbs } = gameState;
 
-  if (!(gameState.maxToCarry! % 2)) {
-    firstNumb = matches - (+gameState.maxToCarry! - 1);
-    secondNumb = matches - (+gameState.maxToCarry! - 3);
+  if (+maxToCarry! <= 1) {
+    return setGameState(
+      (gameState: TypeInitState): TypeInitState => ({
+        ...gameState,
+        aiNumbs: [...aiNumbs, +maxToCarry!],
+        matches: gameState.matches - +maxToCarry!,
+      })
+    );
   }
 
-  if (matches < gameState.maxToCarry!) {
+  let firstNumb: number = matches - +maxToCarry!;
+  let secondNumb: number = matches - (+maxToCarry! - 2);
+
+  if (!(maxToCarry! % 2)) {
+    firstNumb = matches - (+maxToCarry! - 1);
+    secondNumb = matches - (+maxToCarry! - 3);
+  }
+
+  if (matches < maxToCarry!) {
     if (!(matches % 2)) {
       firstNumb = matches - (matches - 1);
       secondNumb = matches - (matches - 3);
@@ -66,14 +78,14 @@ export const aiSpecLogic: any = (
       return setGameState(
         (gameState: TypeInitState): TypeInitState => ({
           ...gameState,
-          aiNumbs: [...gameState.aiNumbs, matches - 2],
+          aiNumbs: [...aiNumbs, matches - 2],
           matches: gameState.matches - (matches - 2),
         })
       );
     } else if (!(firstNumb % 4) || firstNumb % 4 === 1) {
       return setGameState((gameState: any): any => ({
         ...gameState,
-        aiNumbs: [...gameState.aiNumbs, matches],
+        aiNumbs: [...aiNumbs, matches],
         matches: gameState.matches - matches,
       }));
     }
@@ -85,15 +97,15 @@ export const aiSpecLogic: any = (
     return setGameState(
       (gameState: TypeInitState): TypeInitState => ({
         ...gameState,
-        aiNumbs: [...gameState.aiNumbs, +gameState.maxToCarry! - 2],
-        matches: gameState.matches - (+gameState.maxToCarry! - 2),
+        aiNumbs: [...aiNumbs, +maxToCarry! - 2],
+        matches: gameState.matches - (+maxToCarry! - 2),
       })
     );
   } else if (!(firstNumb % 4) || firstNumb % 4 === 1) {
     return setGameState((gameState: any): any => ({
       ...gameState,
-      aiNumbs: [...gameState.aiNumbs, +gameState.maxToCarry],
-      matches: gameState.matches - +gameState.maxToCarry,
+      aiNumbs: [...aiNumbs, +maxToCarry!],
+      matches: gameState.matches - +maxToCarry!,
     }));
   }
 };

@@ -8,6 +8,8 @@ const HeaderMenu: () => ReactElement = (): ReactElement => {
   const [customGameModal, setCustomGameModal] = useState<boolean>(false);
   const { gameState, setGameState } = useContext<TypeGeneralGame>(GameContext);
 
+  const { matches, numbs } = gameState;
+
   const handleClick: () => void = (): void => {
     setRulesModal(true);
   };
@@ -17,7 +19,7 @@ const HeaderMenu: () => ReactElement = (): ReactElement => {
       <button className="rules" onClick={handleClick}>
         Rules
       </button>
-      {gameState.matches === 25 && (
+      {!numbs.length && matches === 25 ? (
         <button
           className="custom-game"
           onClick={(): void => {
@@ -26,8 +28,7 @@ const HeaderMenu: () => ReactElement = (): ReactElement => {
         >
           Custom game
         </button>
-      )}
-      {gameState.matches !== 25 && (
+      ) : (
         <button
           className="rules"
           onClick={(): void => {
@@ -59,10 +60,10 @@ const HeaderMenu: () => ReactElement = (): ReactElement => {
               </div>
             </div>
             <div className="modal-body">
-              Two people are playing a game. From the pile of 25 matches, each
-              player takes either 1, 2 or 3 matches on each turn. The game is
-              over once all matches are taken. Whoever has the even amount of
-              matches wins.
+              Two people are playing a game. From the pile of 2n + 1 (25 by
+              default) matches, each player takes from 1 to m matches (by
+              default 1, 2 or 3) on each turn. The game is over once all matches
+              are taken. Whoever has the even amount of matches wins.
             </div>
           </div>
         </div>

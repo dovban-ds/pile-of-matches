@@ -11,7 +11,7 @@ import { GameContext } from "../../providers/gameState.provider";
 const Main: () => ReactElement = (): ReactElement => {
   const [modal, setModal] = useState<boolean>(false);
   const { gameState, setGameState } = useContext(GameContext);
-  const { matches, numbs } = gameState;
+  const { matches, numbs, aiNumbs } = gameState;
 
   const handleClick: () => void = (): void => {
     setModal(true);
@@ -37,7 +37,7 @@ const Main: () => ReactElement = (): ReactElement => {
           )}
           <div className="emoji-spec">🔥</div>
           <p className="counter">{matches}</p>
-          {matches === 25 && (
+          {!aiNumbs.length && matches === 25 && (
             <button
               className="init-text btn"
               onClick={(): void => {
